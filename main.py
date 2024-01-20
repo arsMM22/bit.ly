@@ -36,8 +36,8 @@ def main():
     parser = argparse.ArgumentParser(description='Эта программа умеет сокращать ссылки, а также считать сумму кликов по уже сокращенной ссылке')
     parser.add_argument('--url', type=str, help='Введите ссылку')
     args = parser.parse_args()
-    parsed_url=urlparse(args.url)
-    parsed_url=f"{parsed_url.netloc}{parsed_url.path}"
+    parsed_url = urlparse(args.url)
+    parsed_url = f"{parsed_url.netloc}{parsed_url.path}"
     try:
         if is_bitlink(token, parsed_url):
             print("Сумма кликов: ", count_clicks(token, parsed_url))
