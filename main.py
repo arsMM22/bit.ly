@@ -33,18 +33,18 @@ def is_bitlink(token, bitlink):
 def main():
     load_dotenv()
     token = os.environ['BITLY_TOKEN']
-    parser = argparse.ArgumentParser(description='���� ������ �������� ��� ��������� ������ � ������� ����� ������')
-    parser.add_argument('--url', type=str, help='������� ������')
+    parser = argparse.ArgumentParser(description='Эта программа умеет сокращать ссылки, а также считать сумму кликов по уже сокращенной ссылке')
+    parser.add_argument('--url', type=str, help='Введите ссылку')
     args = parser.parse_args()
     parsed_url=urlparse(args.url)
     parsed_url=f"{parsed_url.netloc}{parsed_url.path}"
     try:
         if is_bitlink(token, parsed_url):
-            print("���������� ������: ", count_clicks(token, parsed_url))
+            print("Сумма кликов: ", count_clicks(token, parsed_url))
         else:
             print(shorten_link(token, args.url))
     except requests.exceptions.HTTPError:
-        print("������, �������� ������.")
+        print("Ошибка, проверьте ссылку.")
 
 
 if __name__ == "__main__":
